@@ -6,7 +6,7 @@
 /*   By: ulrichd <ulrichd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:56:05 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/22 09:38:17 by ulrichd          ###   ########.fr       */
+/*   Updated: 2023/10/22 21:18:01 by ulrichd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,20 @@ void	clean_list(t_list **keep)
 	char	*buf;
 
 	buf = malloc(BUFFER_SIZE + 1);
+	clean_node = malloc(sizeof(t_list));
+	if (buf == NULL || clean_node == NULL)
+		return ;
+	last_node = get_last_node(*keep);
+	i = 0;
+	j = 0;
+	while (last_node->buffer[i] && last_node->buffer[i] != '\n')
+		i++;
+	while (last_node->buffer[i] && last_node->buffer[++i])
+		buf[j++] = last_node->buffer[i];
+	buf[j] = '\0';
+	clean_node->buffer = buf;
+	clean_node->next = NULL;
+	free_all(keep, clean_node, buf);
 }
 
 char	*get_the_line(t_list *keep)

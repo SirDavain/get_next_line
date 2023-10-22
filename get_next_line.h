@@ -6,7 +6,7 @@
 /*   By: ulrichd <ulrichd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:57:06 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/22 09:38:19 by ulrichd          ###   ########.fr       */
+/*   Updated: 2023/10/22 21:18:43 by ulrichd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct	s_list
 {
 	char			*buffer;
 	struct s_list	*next;
-} t_list;
+} 				t_list;
 
 char 	*get_next_line(int fd);
 void	create_list(t_list **keep, int fd);
@@ -37,5 +37,6 @@ char	*get_the_line(t_list *keep);
 void	copy_str(t_list *keep, char *str);
 int		len_of_newline(t_list *keep);
 void	clean_list(t_list **keep);
+void	free_all(t_list **keep, t_list *clean_node, char *buf);
 
 #endif

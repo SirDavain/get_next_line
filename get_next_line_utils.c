@@ -6,11 +6,34 @@
 /*   By: ulrichd <ulrichd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:57:22 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/22 09:38:18 by ulrichd          ###   ########.fr       */
+/*   Updated: 2023/10/22 21:17:59 by ulrichd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void	free_all(t_list **keep, t_list *clean_node, char *buf)
+{
+	t_list	*tmp;
+
+	if (*keep == NULL)
+		return ;
+	while (*keep)
+	{
+		tmp = (*keep)->next;
+		free((*keep)->buffer);
+		free(*keep);
+		*keep = tmp;
+	}
+	*keep = NULL;
+	if (clean_node->buffer[0])
+		*keep = clean_node;
+	else
+	{
+		free(buf);
+		free(clean_node);
+	}
+}
 
 int	check_for_newline(t_list *keep)
 {
@@ -61,7 +84,7 @@ int	len_of_newline(t_list *keep)
 			i++;
 			len++;
 		}
-		list = list->next;
+		keep = keep->next;
 	}
 	return (len);
 }
