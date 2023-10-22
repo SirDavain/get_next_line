@@ -6,7 +6,7 @@
 /*   By: ulrichd <ulrichd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:57:22 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/22 21:17:59 by ulrichd          ###   ########.fr       */
+/*   Updated: 2023/10/22 21:29:14 by ulrichd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	check_for_newline(t_list *keep)
 t_list	*get_last_node(t_list *keep)
 {
 	if (keep == NULL)
-		return ;
+		return (NULL);
 	while (keep->next)
 		keep = keep->next;
 	return (keep);

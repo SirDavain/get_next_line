@@ -6,7 +6,7 @@
 /*   By: ulrichd <ulrichd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:56:05 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/22 21:18:01 by ulrichd          ###   ########.fr       */
+/*   Updated: 2023/10/22 21:48:33 by ulrichd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,21 @@ char	*get_next_line(int fd)
 	if (keep == NULL)
 		return (NULL);
 	next_line = get_the_line(keep);
-
+	clean_list(&keep);
 	return (next_line);
+}
+
+#include <stdio.h>
+int main(void)
+{
+	int		fd;
+	char	*print_line;
+	int		lines;
+
+	lines = 1;
+	fd = open("container.txt", O_RDONLY);
+	while ((print_line = get_next_line(fd)))
+		printf("%d->%s", lines++, print_line);
+		//printf("%d", fd);
+	return (0);
 }
