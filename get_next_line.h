@@ -6,7 +6,7 @@
 /*   By: ulrichd <ulrichd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:57:06 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/22 00:24:19 by ulrichd          ###   ########.fr       */
+/*   Updated: 2023/10/22 09:38:19 by ulrichd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,9 @@ void	create_list(t_list **keep, int fd);
 int		check_for_newline(t_list *keep);
 void	add_node(t_list **keep, char *buf);
 t_list	*get_last_node(t_list *keep);
+char	*get_the_line(t_list *keep);
+void	copy_str(t_list *keep, char *str);
+int		len_of_newline(t_list *keep);
+void	clean_list(t_list **keep);
 
 #endif

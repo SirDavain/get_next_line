@@ -6,11 +6,22 @@
 /*   By: ulrichd <ulrichd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:56:05 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/22 00:30:52 by ulrichd          ###   ########.fr       */
+/*   Updated: 2023/10/22 09:38:17 by ulrichd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void	clean_list(t_list **keep)
+{
+	t_list	*last_node;
+	t_list	*clean_node;
+	int		i;
+	int		j;
+	char	*buf;
+
+	buf = malloc(BUFFER_SIZE + 1);
+}
 
 char	*get_the_line(t_list *keep)
 {
@@ -19,7 +30,12 @@ char	*get_the_line(t_list *keep)
 
 	if (keep == NULL)
 		return (NULL);
-	
+	str_len = len_of_newline(keep);
+	next_str = malloc(str_len + 1);
+	if (next_str == NULL)
+		return (NULL);
+	copy_str(keep, next_str);
+	return (next_str);
 }
 
 void	add_node(t_list **keep, char *buf)
