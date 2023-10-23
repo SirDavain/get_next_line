@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:57:22 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/22 21:53:52 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/10/23 11:33:09 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	len_of_newline(t_list *keep)
 {
 	int	i;
 	int	len;
+
 	if (keep == NULL)
 		return (0);
 	len = 0;
@@ -88,6 +89,7 @@ int	len_of_newline(t_list *keep)
 	}
 	return (len);
 }
+
 void	copy_str(t_list *keep, char *str)
 {
 	int	i;

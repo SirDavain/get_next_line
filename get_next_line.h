@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:57:06 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/22 21:53:39 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/10/23 11:33:10 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#	define BUFFER_SIZE 10
+#  define BUFFER_SIZE 10
 # endif
 
-typedef struct	s_list
+typedef struct s_list
 {
 	char			*buffer;
 	struct s_list	*next;
-} 				t_list;
+}	t_list;
 
-char 	*get_next_line(int fd);
+char	*get_next_line(int fd);
 void	create_list(t_list **keep, int fd);
 int		check_for_newline(t_list *keep);
 void	add_node(t_list **keep, char *buf);
