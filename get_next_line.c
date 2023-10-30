@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:18:43 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/30 14:45:33 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/10/30 15:13:35 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	free_all(char **ptr)
 	}
 }
 
-char	*join_line(int	nl_position, char **buf)
+char	*join_line(int nl_position, char **buf)
 {
 	char	*result;
 	char	*tmp;
@@ -48,7 +48,7 @@ char	*join_line(int	nl_position, char **buf)
 
 char	*read_line(int fd, char **buf, char *read_chars)
 {
-	size_t	bytes_read;
+	ssize_t	bytes_read;
 	char	*tmp;
 	char	*new_line;
 
@@ -77,7 +77,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	read_chars = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	read_chars = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (read_chars == NULL)
 		return (NULL);
 	if (!buf[fd])
@@ -86,20 +86,23 @@ char	*get_next_line(int fd)
 	free_all(&read_chars);
 	return (the_line);
 }
-// #include <stdio.h>
-// int main(void)
-// {
-// 	int		fd;
-// 	char	*print_line;
-// 	int		lines;
+#include <stdio.h>
+int main(void)
+{
+	int		fd;
+	char	*print_line;
+	int		lines;
+	char	*res;
 
-// 	lines = 1;
-// 	fd = open("../lorem.txt", O_RDONLY);
-// 	while ((print_line = get_next_line(fd)))
-// 		printf("%d->%s", lines++, print_line);
-// 		printf("%d", fd);
-// 	return (0);
-// }
+	lines = 1;
+	fd = open("../lorem.txt", O_RDONLY);
+	while ((print_line = get_next_line(fd)))
+		printf("%d->%s", lines++, print_line);
+		//printf("%d", fd);
+	res = get_next_line(fd);
+	printf("%s", res);
+	return (0);
+}
 /*
 PSEUDOCODE:
 Process: 
