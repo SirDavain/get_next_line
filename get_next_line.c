@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:18:43 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/30 15:13:35 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/10/30 21:52:11 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*get_next_line(int fd)
 	char			*read_chars;
 	char			*the_line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > MAX_FD)
 		return (NULL);
 	read_chars = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (read_chars == NULL)
@@ -95,12 +95,12 @@ int main(void)
 	char	*res;
 
 	lines = 1;
-	fd = open("../lorem.txt", O_RDONLY);
+	fd = open("lorem.txt", O_RDONLY);
 	while ((print_line = get_next_line(fd)))
 		printf("%d->%s", lines++, print_line);
 		//printf("%d", fd);
-	res = get_next_line(fd);
-	printf("%s", res);
+	// res = get_next_line(fd);
+	// printf("%s", res);
 	return (0);
 }
 /*
