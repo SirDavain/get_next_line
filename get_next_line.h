@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:57:06 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/24 20:17:06 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/10/30 14:41:34 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,18 @@
 #  define BUFFER_SIZE 10
 # endif
 
-typedef struct s_list
-{
-	char			*buffer;
-	struct s_list	*next;
-}	t_list;
+# ifndef MAX_FD
+#  define MAX_FD 256
+# endif
 
 char	*get_next_line(int fd);
-void	create_list(t_list **keep, int fd);
-int		check_for_newline(t_list *keep);
-void	add_node(t_list **keep, char *buf);
-t_list	*get_last_node(t_list *keep);
-char	*get_the_line(t_list *keep);
-void	copy_str(t_list *keep, char *str);
-int		len_of_newline(t_list *keep);
-void	clean_list(t_list **keep);
-void	free_all(t_list **keep, t_list *clean_node, char *buf);
+char	*read_line(int fd, char **buf, char *read_chars);
+char	*join_line(int	nl_position, char **buf);
+void	free_all(char **ptr);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strdup(const char *str);
+size_t	ft_strlen(const char *str);
+char	*ft_strchr(const char *s, int c);
 
 #endif

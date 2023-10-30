@@ -6,35 +6,100 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:18:43 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/27 22:09:16 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/10/30 14:45:33 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	check_for_newline()
+void	free_all(char **ptr)
 {
-	while (the line is not \n or BUFFER_SIZE is 0)
+	if (*ptr != NULL)
 	{
-		put what is at the current position in the buf;
-
+		free(*ptr);
+		ptr = NULL;
 	}
-	if (\n)
-		return (something);
+}
+
+char	*join_line(int	nl_position, char **buf)
+{
+	char	*result;
+	char	*tmp;
+
+	tmp = NULL;
+	if (nl_position <= 0)
+	{
+		if (**buf == '\0')
+		{
+			free(*buf);
+			*buf = NULL;
+			return (NULL);
+		}
+		result = *buf;
+		*buf = NULL;
+		return (result);
+	}
+	tmp = ft_substr(*buf, nl_position, BUFFER_SIZE);
+	result = *buf;
+	result[nl_position] = 0;
+	*buf = tmp;
+	return (result);
+}
+
+char	*read_line(int fd, char **buf, char *read_chars)
+{
+	size_t	bytes_read;
+	char	*tmp;
+	char	*new_line;
+
+	new_line = ft_strchr(*buf, '\n');
+	tmp = NULL;
+	bytes_read = 0;
+	while (new_line == NULL)
+	{
+		bytes_read = read(fd, read_chars, BUFFER_SIZE);
+		if (bytes_read <= 0)
+			return(join_line(bytes_read, buf));
+		read_chars[bytes_read] = 0;
+		tmp = ft_strjoin(*buf, read_chars);
+		free_all(buf);
+		*buf = tmp;
+		new_line = ft_strchr(*buf, '\n');
+	}
+	return (join_line(new_line - *buf + 1, buf));
 }
 
 char	*get_next_line(int fd)
 {
-	static int		chars_read;
-	static char		*output;
-	char			*buf;
+	static char		*buf[MAX_FD + 1];
+	char			*read_chars;
+	char			*the_line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buf = malloc(BUFFER_SIZE); //BUFFER_SIZE + 1 instead?
-	chars_read = read(fd, buf, BUFFER_SIZE);
+	read_chars = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (read_chars == NULL)
+		return (NULL);
+	if (!buf[fd])
+		buf[fd] = ft_strdup("");
+	the_line = read_line(fd, &buf[fd], read_chars);
+	free_all(&read_chars);
+	return (the_line);
 }
+// #include <stdio.h>
+// int main(void)
+// {
+// 	int		fd;
+// 	char	*print_line;
+// 	int		lines;
 
+// 	lines = 1;
+// 	fd = open("../lorem.txt", O_RDONLY);
+// 	while ((print_line = get_next_line(fd)))
+// 		printf("%d->%s", lines++, print_line);
+// 		printf("%d", fd);
+// 	return (0);
+// }
 /*
 PSEUDOCODE:
 Process: 
@@ -42,7 +107,9 @@ Process:
 	read until either BUFFER_SIZE is 0 or \n was found
 	if BUFFER_SIZE is 0, read again
 	if \n is found, return the line
-	if EOF return the line
+	if EOF is reached -> return the line
+	now the static vars should remember, where the process stopped
+	next call to get_next_line will return the next line and so on
 3 static vars:
 #1: stores the read() function
 #2: a char pointer stores the output
