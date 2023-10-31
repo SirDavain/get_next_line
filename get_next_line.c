@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:18:43 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/30 21:52:11 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/10/31 11:50:39 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*read_line(int fd, char **buf, char *read_chars)
 	{
 		bytes_read = read(fd, read_chars, BUFFER_SIZE);
 		if (bytes_read <= 0)
-			return(join_line(bytes_read, buf));
+			return (join_line(bytes_read, buf));
 		read_chars[bytes_read] = 0;
 		tmp = ft_strjoin(*buf, read_chars);
 		free_all(buf);
@@ -86,39 +86,20 @@ char	*get_next_line(int fd)
 	free_all(&read_chars);
 	return (the_line);
 }
-#include <stdio.h>
-int main(void)
-{
-	int		fd;
-	char	*print_line;
-	int		lines;
-	char	*res;
+// #include <stdio.h>
+// int main(void)
+// {
+// 	int		fd;
+// 	char	*print_line;
+// 	int		lines;
+// 	char	*res;
 
-	lines = 1;
-	fd = open("lorem.txt", O_RDONLY);
-	while ((print_line = get_next_line(fd)))
-		printf("%d->%s", lines++, print_line);
-		//printf("%d", fd);
-	// res = get_next_line(fd);
-	// printf("%s", res);
-	return (0);
-}
-/*
-PSEUDOCODE:
-Process: 
-	check if passed fd is valid;
-	read until either BUFFER_SIZE is 0 or \n was found
-	if BUFFER_SIZE is 0, read again
-	if \n is found, return the line
-	if EOF is reached -> return the line
-	now the static vars should remember, where the process stopped
-	next call to get_next_line will return the next line and so on
-3 static vars:
-#1: stores the read() function
-#2: a char pointer stores the output
-#3: 
-
-If new line char is found (ft_strchr) return everything until that point and
-set the var to +1 to skip it
-Check the BUFFER_SIZE to see if there is still some left before calling read() again
-*/
+// 	lines = 1;
+// 	fd = open("lorem.txt", O_RDONLY);
+// 	while ((print_line = get_next_line(fd)))
+// 		printf("%d->%s", lines++, print_line);
+// 		//printf("%d", fd);
+// 	// res = get_next_line(fd);
+// 	// printf("%s", res);
+// 	return (0);
+// }

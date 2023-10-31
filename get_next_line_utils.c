@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:35:16 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/30 14:38:54 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/10/31 11:49:54 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_strchr(const char *s, int n)
 {
 	char	*tmp;
-	
+
 	tmp = (char *)s;
 	while (*tmp != (char)n)
 	{
@@ -72,7 +72,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!str)
 		return (NULL);
 	i = 0;
-	while (s[start + i] && i < len)	
+	while (s[start + i] && i < len)
 	{
 		str[i] = s[start + i];
 		i++;

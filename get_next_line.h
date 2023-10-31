@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:57:06 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/30 15:06:47 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/10/31 11:50:11 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 char	*get_next_line(int fd);
 char	*read_line(int fd, char **buf, char *read_chars);
-char	*join_line(int	nl_position, char **buf);
+char	*join_line(int nl_position, char **buf);
 void	free_all(char **ptr);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
