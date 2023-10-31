@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:18:43 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/31 11:50:39 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/10/31 13:05:05 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,20 +86,20 @@ char	*get_next_line(int fd)
 	free_all(&read_chars);
 	return (the_line);
 }
-// #include <stdio.h>
-// int main(void)
-// {
-// 	int		fd;
-// 	char	*print_line;
-// 	int		lines;
-// 	char	*res;
+#include <stdio.h>
+int main(void)
+{
+	int		fd;
+	char	*print_line;
+	int		lines;
+	//char	*res;
 
-// 	lines = 1;
-// 	fd = open("lorem.txt", O_RDONLY);
-// 	while ((print_line = get_next_line(fd)))
-// 		printf("%d->%s", lines++, print_line);
-// 		//printf("%d", fd);
-// 	// res = get_next_line(fd);
-// 	// printf("%s", res);
-// 	return (0);
-// }
+	lines = 1;
+	fd = open("lorem.txt", O_RDONLY);
+	while ((print_line = get_next_line(fd)))
+		printf("%d->%s", lines++, print_line);
+		//printf("%d", fd);
+	// res = get_next_line(fd);
+	// printf("%s", res);
+	return (0);
+}
