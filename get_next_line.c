@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:18:43 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/31 13:05:05 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/10/31 14:33:47 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*join_line(int nl_position, char **buf)
 
 char	*read_line(int fd, char **buf, char *read_chars)
 {
-	ssize_t	bytes_read;
+	size_t	bytes_read;
 	char	*tmp;
 	char	*new_line;
 
@@ -59,7 +59,7 @@ char	*read_line(int fd, char **buf, char *read_chars)
 	{
 		bytes_read = read(fd, read_chars, BUFFER_SIZE);
 		if (bytes_read <= 0)
-			return (join_line(bytes_read, buf));
+			return (NULL);
 		read_chars[bytes_read] = 0;
 		tmp = ft_strjoin(*buf, read_chars);
 		free_all(buf);
@@ -91,13 +91,19 @@ int main(void)
 {
 	int		fd;
 	char	*print_line;
-	int		lines;
+	//int		lines;
 	//char	*res;
 
-	lines = 1;
+	//lines = 1;
 	fd = open("lorem.txt", O_RDONLY);
-	while ((print_line = get_next_line(fd)))
-		printf("%d->%s", lines++, print_line);
+	print_line = "";
+	while (print_line)
+	{
+		print_line = get_next_line(fd);
+		printf("%s", print_line);
+	}
+	// while ((print_line = get_next_line(fd)))
+	// 	printf("%d->%s", lines++, print_line);
 		//printf("%d", fd);
 	// res = get_next_line(fd);
 	// printf("%s", res);
