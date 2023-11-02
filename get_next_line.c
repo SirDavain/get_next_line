@@ -6,13 +6,13 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 08:33:17 by dulrich           #+#    #+#             */
-/*   Updated: 2023/11/02 08:59:59 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/11/02 10:31:03 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*after_nl(char *read_line)
+char	*save_rest(char *read_line)
 {
 	char	*rest;
 	int		i;
@@ -98,7 +98,7 @@ char	*get_next_line(int fd)
 	if (!read_line)
 		return (NULL);
 	the_next_line = read2str(read_line);
-	read_line = after_nl(read_line);
+	read_line = save_rest(read_line);
 	return (the_next_line);
 }
 
