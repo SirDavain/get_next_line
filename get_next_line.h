@@ -6,7 +6,7 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 08:33:37 by dulrich           #+#    #+#             */
-/*   Updated: 2023/11/02 10:30:58 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/11/02 13:39:39 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 char	*get_next_line(int fd);
 char	*read_newline(int fd, char *rline);
 char	*read2str(char *rline);
-char	*save_rest(char *rline);
+char	*save_remainder(char *rline);
 char	*ft_strjoin(char *s1, char const *s2);
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);

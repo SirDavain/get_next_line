@@ -6,15 +6,15 @@
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 08:33:17 by dulrich           #+#    #+#             */
-/*   Updated: 2023/11/02 10:31:03 by dulrich          ###   ########.fr       */
+/*   Updated: 2023/11/02 13:43:03 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*save_rest(char *read_line)
+char	*save_remainder(char *read_line)
 {
-	char	*rest;
+	char	*remainder;
 	int		i;
 	int		j;
 
@@ -26,8 +26,8 @@ char	*save_rest(char *read_line)
 		free(read_line);
 		return (NULL);
 	}
-	rest = malloc(sizeof(char) * (ft_strlen(read_line) - i) + 1);
-	if (!rest)
+	remainder = malloc(sizeof(char) * (ft_strlen(read_line) - i) + 1);
+	if (!remainder)
 	{
 		free(read_line);
 		return (NULL);
@@ -35,10 +35,10 @@ char	*save_rest(char *read_line)
 	i++;
 	j = 0;
 	while (read_line[i])
-		rest[j++] = read_line[i++];
-	rest[j] = '\0';
+		remainder[j++] = read_line[i++];
+	remainder[j] = '\0';
 	free(read_line);
-	return (rest);
+	return (remainder);
 }
 
 char	*read2str(char *read_line)
@@ -98,11 +98,11 @@ char	*get_next_line(int fd)
 	if (!read_line)
 		return (NULL);
 	the_next_line = read2str(read_line);
-	read_line = save_rest(read_line);
+	read_line = save_remainder(read_line);
 	return (the_next_line);
 }
 
-#include <stdio.h>
+/* #include <stdio.h>
 
 int	main(void)
 {
@@ -115,4 +115,4 @@ int	main(void)
 		free(print_line);
 	}
 	return (0);
-}
+} */
