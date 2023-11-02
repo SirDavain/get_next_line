@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dulrich <dulrich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 19:57:06 by dulrich           #+#    #+#             */
-/*   Updated: 2023/10/31 11:50:11 by dulrich          ###   ########.fr       */
+/*   Created: 2023/11/01 08:33:37 by dulrich           #+#    #+#             */
+/*   Updated: 2023/11/01 09:59:04 by dulrich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,12 @@
 #  define BUFFER_SIZE 10
 # endif
 
-# ifndef MAX_FD
-#  define MAX_FD 256
-# endif
-
 char	*get_next_line(int fd);
-char	*read_line(int fd, char **buf, char *read_chars);
-char	*join_line(int nl_position, char **buf);
-void	free_all(char **ptr);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strdup(const char *str);
-size_t	ft_strlen(const char *str);
+char	*read_newline(int fd, char *rline);
+char	*read2str(char *rline);
+char	*after_nl(char *rline);
+char	*ft_strjoin(char *s1, char const *s2);
+size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 
 #endif
